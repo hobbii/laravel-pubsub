@@ -1,6 +1,6 @@
 # Hobbii/Laravel-PubSub
-[![codecov](https://codecov.io/gh/hobbii/laravel-pubsub/branch/main/graph/badge.svg?token=)](https://codecov.io/gh/hobbii/laravel-pubsub)
-![CI Workflow](https://github.com/hobbii/laravel-pubsub/actions/workflows/ci.yaml/badge.svg?branch=main)
+[![codecov](https://codecov.io/gh/hobbii/laravel-pubsub/branch/main/graph/badge.svg?token=9I6H1sxORL)](https://codecov.io/gh/hobbii/laravel-pubsub)
+![CI Workflow](https://github.com/hobbii/laravel-pubsub/actions/workflows/ci.yml/badge.svg?branch=main)
 
 A Pub/Sub package for Laravel using AWS [SQS](https://aws.amazon.com/sqs/) and [SNS](https://aws.amazon.com/sns/)
 
