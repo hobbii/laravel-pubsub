@@ -18,8 +18,8 @@ class SqsQueueTest extends SqsTestCase
         $expectedJob = $this->makeJob([
             'type' => 'event_created',
             'data' => [
-                'event' => 'payload'
-            ]
+                'event' => 'payload',
+            ],
         ]);
         $sqsClient = $this->mock(SqsClient::class, function (MockInterface $mock) use ($expectedJob) {
             $mock->shouldReceive('receiveMessage')
@@ -33,10 +33,10 @@ class SqsQueueTest extends SqsTestCase
                         $this->makeJob([
                             'type' => 'event_updated',
                             'data' => [
-                                'event' => 'payload'
-                            ]
-                        ])
-                    ]
+                                'event' => 'payload',
+                            ],
+                        ]),
+                    ],
                 ]));
         });
 

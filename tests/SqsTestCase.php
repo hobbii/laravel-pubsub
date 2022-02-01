@@ -16,6 +16,7 @@ class SqsTestCase extends TestCase
 
         $this->faker = Factory::create();
     }
+
     protected function makeJob(array $message)
     {
         $arn = 'arn:aws:sns:us-central-1:123456789000:MyTopic.fifo';
@@ -27,7 +28,7 @@ class SqsTestCase extends TestCase
             'TopicArn' => $arn,
             'Message' => json_encode($message),
             'Timestamp' => now()->toISOString(),
-            'UnsubscribeURL' => "https://sns.us-central-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=$arn:{$this->faker->uuid}"
+            'UnsubscribeURL' => "https://sns.us-central-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=$arn:{$this->faker->uuid}",
         ], JSON_PRETTY_PRINT);
 
         return [

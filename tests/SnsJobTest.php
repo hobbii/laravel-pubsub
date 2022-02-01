@@ -21,7 +21,7 @@ class SnsJobTest extends SqsTestCase
             'data' => [
                 'title' => 'My Event',
                 'payload' => [
-                    'event' => 'payload'
+                    'event' => 'payload',
                 ],
             ],
         ];
@@ -85,7 +85,7 @@ class SnsJobTest extends SqsTestCase
             'data' => [
                 'title' => 'My Event',
                 'payload' => [
-                    'event' => 'payload'
+                    'event' => 'payload',
                 ],
             ],
         ];
@@ -120,7 +120,7 @@ class SnsJobTest extends SqsTestCase
             'data' => [
                 'title' => 'My Event',
                 'payload' => [
-                    'event' => 'payload'
+                    'event' => 'payload',
                 ],
             ],
         ];
@@ -171,6 +171,5 @@ class MyEventJob extends AbstractSnsJob
 {
     public function handle(array $data): void
     {
-
     }
 }

@@ -27,8 +27,8 @@ class SnsBroadcasterTest extends TestCase
             'type' => 'event_test',
             'data' => [
                 'this' => 'is',
-                'my' => 'test'
-            ]
+                'my' => 'test',
+            ],
         ];
         $deduplicationId = $this->faker->uuid;
         $messageGroupId = 'event_test_1';
@@ -38,7 +38,7 @@ class SnsBroadcasterTest extends TestCase
                     'TopicArn' => 'arn:aws:sns:us-central-1:123456789:MyTopic.fifo',
                     'Message' => json_encode($payload),
                     'MessageDeduplicationId' => $deduplicationId,
-                    'MessageGroupId' => $messageGroupId
+                    'MessageGroupId' => $messageGroupId,
                 ]);
         });
 
@@ -60,9 +60,9 @@ class SnsBroadcasterTest extends TestCase
             'type' => 'event_test',
             'data' => [
                 'this' => 'is',
-                'my' => 'test'
+                'my' => 'test',
             ],
-            'deduplicationId' => $this->faker->uuid
+            'deduplicationId' => $this->faker->uuid,
         ];
 
         $broadcaster = new SnsBroadcaster(

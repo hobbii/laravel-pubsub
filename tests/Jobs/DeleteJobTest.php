@@ -24,7 +24,7 @@ class DeleteJobTest extends TestCase
             'sync',
             'default'
         ), [
-            'data' => 'payload'
+            'data' => 'payload',
         ]);
     }
 }
