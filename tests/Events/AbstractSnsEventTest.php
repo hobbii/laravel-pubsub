@@ -24,5 +24,4 @@ class AbstractSnsEventTest extends TestCase
 
 class Event extends AbstractSnsEvent
 {
-
 }

@@ -33,6 +33,7 @@ class PubSubServiceProviderTest extends TestCase
             'region' => 'my-region',
             'after_commit' => false,
         ]);
+
         return [
             PubSubServiceProvider::class,
         ];
