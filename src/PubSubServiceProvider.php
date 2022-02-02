@@ -30,7 +30,7 @@ class PubSubServiceProvider extends ServiceProvider
             ->make(BroadcastManager::class)
             ->extend(
                 'pubsub',
-                fn($app, $config) => new SnsBroadcaster(
+                fn ($app, $config) => new SnsBroadcaster(
                     new SnsClient([
                         'credentials' => [
                             'key' => $config['key'],
@@ -53,6 +53,6 @@ class PubSubServiceProvider extends ServiceProvider
     {
         $this->app
             ->make(QueueManager::class)
-            ->addConnector('pubsub', fn() => new SnsConnector());
+            ->addConnector('pubsub', fn () => new SnsConnector());
     }
 }
