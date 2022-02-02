@@ -14,7 +14,7 @@ class SqsQueueTest extends SqsTestCase
 {
     public function testPopQueueReturnsSingleMessageAsSnsJob(): void
     {
-        Config::set('queue.connections.sns.delete_unmapped', true);
+        Config::set('queue.connections.pubsub.delete_unmapped', true);
         $expectedJob = $this->makeJob([
             'type' => 'event_created',
             'data' => [
