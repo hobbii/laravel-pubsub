@@ -4,17 +4,32 @@ namespace Hobbii\PubSub;
 
 use Aws\Sns\SnsClient;
 use Illuminate\Broadcasting\BroadcastManager;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Queue\QueueManager;
 use Illuminate\Support\ServiceProvider;
 
 class PubSubServiceProvider extends ServiceProvider
 {
+    /**
+     * @return void
+     * @throws BindingResolutionException
+     */
     public function boot(): void
+    {
+        $this->extendBroadcastManager();
+        $this->extractQueueManager();
+    }
+
+    /**
+     * @return void
+     * @throws BindingResolutionException
+     */
+    private function extendBroadcastManager(): void
     {
         $this->app
             ->make(BroadcastManager::class)
             ->extend(
-                'sns',
+                'pubsub',
                 fn ($app, $config) => new SnsBroadcaster(
                     new SnsClient([
                         'credentials' => [
@@ -28,9 +43,16 @@ class PubSubServiceProvider extends ServiceProvider
                     $config['suffix']
                 )
             );
+    }
 
+    /**
+     * @return void
+     * @throws BindingResolutionException
+     */
+    private function extractQueueManager(): void
+    {
         $this->app
             ->make(QueueManager::class)
-            ->addConnector('sns', fn () => new SnsConnector());
+            ->addConnector('pubsub', fn () => new SnsConnector());
     }
 }

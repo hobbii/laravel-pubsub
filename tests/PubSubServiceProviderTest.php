@@ -14,17 +14,17 @@ class PubSubServiceProviderTest extends TestCase
 {
     protected function getPackageProviders($app): array
     {
-        Config::set('broadcasting.connections.sns', [
-            'driver' => 'sns',
+        Config::set('broadcasting.connections.pubsub', [
+            'driver' => 'pubsub',
             'key' => 'mykey',
             'secret' => 'mysecret',
             'region' => 'my-region',
             'suffix' => 'my-suffix',
             'prefix' => 'my-prefix',
         ]);
-        Config::set('queue.default', 'sns');
-        Config::set('queue.connections.sns', [
-            'driver' => 'sns',
+        Config::set('queue.default', 'pubsub');
+        Config::set('queue.connections.pubsub', [
+            'driver' => 'pubsub',
             'key' => 'mykey',
             'secret' => 'mysecret',
             'prefix' => 'my-prefix',
@@ -41,11 +41,11 @@ class PubSubServiceProviderTest extends TestCase
 
     public function testBroadcastManagerIsExtended(): void
     {
-        $this->assertInstanceOf(SnsBroadcaster::class, Broadcast::connection('sns'));
+        $this->assertInstanceOf(SnsBroadcaster::class, Broadcast::connection('pubsub'));
     }
 
     public function testQueueManagerIsExtended(): void
     {
-        $this->assertInstanceOf(SnsQueue::class, Queue::setConnectionName('sns'));
+        $this->assertInstanceOf(SnsQueue::class, Queue::setConnectionName('pubsub'));
     }
 }

@@ -88,11 +88,11 @@ class SnsJob extends SqsJob
      */
     private function mapJob(string $type): string
     {
-        if ($job = Config::get('queue.connections.sns.mapping.' . $type)) {
+        if ($job = Config::get('queue.connections.pubsub.mapping.' . $type)) {
             return $job;
         }
 
-        if (Config::get('queue.connections.sns.delete_unmapped')) {
+        if (Config::get('queue.connections.pubsub.delete_unmapped')) {
             return DeleteJob::class;
         }
 

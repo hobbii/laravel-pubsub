@@ -9,7 +9,7 @@ composer require hobbii/laravel-pubsub
 ```
 
 ## Installation
-Update `config/broadcasting.php`, adding an `sns` connection:
+Update `config/broadcasting.php`, adding an `pubsub` connection:
 ```php
 <?php
 
@@ -17,8 +17,8 @@ return [
     ...
     'connections' => [
         ...
-        'sns' => [
-            'driver' => 'sns',
+        'pubsub' => [
+            'driver' => 'pubsub',
             'key' => env('AWS_SNS_KEY_ID'),
             'secret' => env('AWS_SNS_ACCESS_KEY'),
             'region' => env('AWS_SNS_REGION'),
@@ -29,7 +29,7 @@ return [
 ];
 ```
 
-Update `config/queues.php`, adding an `sns` connection:
+Update `config/queues.php`, adding an `pubsub` connection:
 ```php
 <?php
 
@@ -37,8 +37,8 @@ return [
     ...
     'connections' => [
         ...
-        'sns' => [
-            'driver' => 'sns',
+        'pubsub' => [
+            'driver' => 'pubsub',
             'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'prefix' => env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
@@ -124,10 +124,10 @@ class MyJob extends AbstractSnsJob
     }
 }
 ```
-In `config/queue.php` under `connections.sns.mapping`, map the event types to the jobs:
+In `config/queue.php` under `connections.pubsub.mapping`, map the event types to the jobs:
 ```php
-    'sns' => [
-        'driver' => 'sns',
+    'pubsub' => [
+        'driver' => 'pubsub',
         ...
         'mapping' => [
             'my_event' => \App\Jobs\MyJob::class,
@@ -136,7 +136,7 @@ In `config/queue.php` under `connections.sns.mapping`, map the event types to th
 ```
 Start the queue worker to listen for events on sqs, via:
 ```shell
-php artisan queue:work sns
+php artisan queue:work pubsub
 ```
 
 ## Testing

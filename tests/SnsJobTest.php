@@ -13,7 +13,7 @@ class SnsJobTest extends SqsTestCase
 {
     public function testMessageTypeIsMappedToJob()
     {
-        Config::set('queue.connections.sns.mapping', [
+        Config::set('queue.connections.pubsub.mapping', [
             'event_created' => MyEventJob::class,
         ]);
         $message = [
@@ -31,7 +31,7 @@ class SnsJobTest extends SqsTestCase
             $this->app,
             $this->mock(SqsClient::class),
             $job,
-            'sns',
+            'pubsub',
             'MyQueue'
         );
 
@@ -44,13 +44,13 @@ class SnsJobTest extends SqsTestCase
 
     public function testUnmappedMessageTypeIsDefaultingToDeleteJob(): void
     {
-        Config::set('queue.connections.sns.delete_unmapped', true);
+        Config::set('queue.connections.pubsub.delete_unmapped', true);
 
         $snsJob = new SnsJob(
             $this->app,
             $this->mock(SqsClient::class),
             $this->makeJob(['type' => 'random_type', 'data' => ['example' => 'data']]),
-            'sns',
+            'pubsub',
             'MyQueue'
         );
 
@@ -59,13 +59,13 @@ class SnsJobTest extends SqsTestCase
 
     public function testUnmappedMessageTypeThrowsException(): void
     {
-        Config::set('queue.connections.sns.deleted_unmapped', false);
+        Config::set('queue.connections.pubsub.deleted_unmapped', false);
 
         $snsJob = new SnsJob(
             $this->app,
             $this->mock(SqsClient::class),
             $this->makeJob(['type' => 'throw_exception', 'data' => ['example' => 'data']]),
-            'sns',
+            'pubsub',
             'MyQueue'
         );
 
@@ -77,7 +77,7 @@ class SnsJobTest extends SqsTestCase
 
     public function testExecutingJobDeletesFromSQSOnSuccess(): void
     {
-        Config::set('queue.connections.sns.mapping', [
+        Config::set('queue.connections.pubsub.mapping', [
             'event_created' => MyEventJob::class,
         ]);
         $message = [
@@ -103,7 +103,7 @@ class SnsJobTest extends SqsTestCase
             $this->app,
             $sqsClient,
             $job,
-            'sns',
+            'pubsub',
             'MyQueue'
         );
 
@@ -112,7 +112,7 @@ class SnsJobTest extends SqsTestCase
 
     public function testFailingJobShouldBeReleasedNotDeletedFromSQS(): void
     {
-        Config::set('queue.connections.sns.mapping', [
+        Config::set('queue.connections.pubsub.mapping', [
             'event_created' => MyEventJob::class,
         ]);
         $message = [
@@ -140,7 +140,7 @@ class SnsJobTest extends SqsTestCase
             $this->app,
             $sqsClient,
             $job,
-            'sns',
+            'pubsub',
             'MyQueue'
         );
 
