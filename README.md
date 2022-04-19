@@ -1,8 +1,10 @@
 # Hobbii/Laravel-PubSub
 [![codecov](https://codecov.io/gh/hobbii/laravel-pubsub/branch/main/graph/badge.svg?token=9I6H1sxORL)](https://codecov.io/gh/hobbii/laravel-pubsub)
+[![Total Downloads](https://img.shields.io/packagist/dt/hobbii/laravel-pubsub)](https://packagist.org/packages/hobbii/laravel-pubsub)
+[![Latest Version](https://img.shields.io/packagist/v/hobbii/laravel-pubsub)](https://packagist.org/packages/hobbii/laravel-pubsub)
 ![CI Workflow](https://github.com/hobbii/laravel-pubsub/actions/workflows/ci.yml/badge.svg?branch=main)
 
-A Pub/Sub package for Laravel using AWS [SQS](https://aws.amazon.com/sqs/) and [SNS](https://aws.amazon.com/sns/)
+A public composer package, adding Pub/Sub for Laravel using AWS [SQS](https://aws.amazon.com/sqs/) and [SNS](https://aws.amazon.com/sns/)
 
 ```shell
 composer require hobbii/laravel-pubsub
