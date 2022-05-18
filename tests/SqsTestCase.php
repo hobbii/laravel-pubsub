@@ -41,4 +41,34 @@ class SqsTestCase extends TestCase
             ],
         ];
     }
+
+    protected function makeSqsJob(string $job): array
+    {
+        $body = json_encode([
+            'uuid' => $this->faker->uuid(),
+            'displayName' => $job,
+            'job' => 'Illuminate\\Queue\\CallQueuedHandler@call',
+            'maxTries' => null,
+            'maxExceptions' => null,
+            'failOnTimeout' => false,
+            'backoff' => null,
+            'timeout' => null,
+            'retryUntil' => null,
+            'data' => [
+                'commandName' => $job,
+                'command' => 'O:16:\"App\\Jobs\\TestJob\":2:{s:10:\"connection\";s:3:\"sqs\";s:5:\"queue\";s:7:\"default\";}',
+            ],
+            'attempts' => 0,
+        ]);
+
+        return [
+            'MessageId' => $this->faker->uuid,
+            'ReceiptHandle' => base64_encode(random_bytes(256)),
+            'MD5OfBody' => hash('md5', $body),
+            'Body' => $body,
+            'Attributes' => [
+                'ApproximateReceiveCount' => 1,
+            ],
+        ];
+    }
 }

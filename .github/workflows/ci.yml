@@ -7,19 +7,7 @@ on:
   pull_request:
 
 jobs:
-  php-cs-fixer:
-    name: PHP CodeStyle Fixer
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: PHP-CS-Fixer
-        uses: docker://oskarstark/php-cs-fixer-ga
-        with:
-          args: --diff --dry-run
-
   tests:
-    needs: php-cs-fixer
     runs-on: ubuntu-latest
     steps:
       - name: Set Up PHP 8.1
@@ -34,11 +22,14 @@ jobs:
       - name: Install Composer Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: vendor/bin/phpunit -d memory_limit=512M --coverage-clover clover.xml
+      - name: Execute PHP CS Fixer
+        run: vendor/bin/php-cs-fixer fix --diff --dry-run
 
       - name: Execute Static Analysis via PHPStan
         run: vendor/bin/phpstan analyse
+
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        run: vendor/bin/phpunit -d memory_limit=512M --coverage-clover clover.xml
 
       - uses: codecov/codecov-action@v2
         with:
