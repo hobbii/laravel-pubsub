@@ -1,5 +1,5 @@
 # Hobbii/Laravel-PubSub
-[![codecov](https://codecov.io/gh/hobbii/laravel-pubsub/branch/main/graph/badge.svg?token=9I6H1sxORL)](https://codecov.io/gh/hobbii/laravel-pubsub)
+[![Coverage Status](https://coveralls.io/repos/github/hobbii/laravel-pubsub/badge.svg)](https://coveralls.io/github/hobbii/laravel-pubsub)
 [![Total Downloads](https://img.shields.io/packagist/dt/hobbii/laravel-pubsub)](https://packagist.org/packages/hobbii/laravel-pubsub)
 [![Latest Version](https://img.shields.io/packagist/v/hobbii/laravel-pubsub)](https://packagist.org/packages/hobbii/laravel-pubsub)
 ![CI Workflow](https://github.com/hobbii/laravel-pubsub/actions/workflows/ci.yml/badge.svg?branch=main)
